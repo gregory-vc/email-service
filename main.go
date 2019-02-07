@@ -8,12 +8,13 @@ import (
 	micro "github.com/micro/go-micro"
 	"github.com/micro/go-micro/broker"
 	_ "github.com/micro/go-plugins/broker/nats"
+	k8s "github.com/micro/kubernetes/go/micro"
 )
 
 const topic = "user.created"
 
 func main() {
-	srv := micro.NewService(
+	srv := k8s.NewService(
 		micro.Name("go.micro.srv.email"),
 		micro.Version("latest"),
 	)

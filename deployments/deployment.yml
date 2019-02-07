@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: email
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email
+  template:
+    metadata:
+      labels:
+        app: email
+    spec:
+        containers:
+        - name: email-service
+          image: eu.gcr.io/my-project-tattoor/email-service:latest
+          imagePullPolicy: Always
+          command: [
+            "./email-service",
+            "--selector=static",
+            "--server_address=:8080"
+          ]
+          env:
+          - name: MICRO_BROKER
+            value: "nats"
+          - name: MICRO_BROKER_ADDRESS
+            value: "nats:4222"
+          - name: UPDATED_AT
+            value: "Чт фев  7 20:50:57 MSK 2019"
+          ports:
+          - containerPort: 8080
+            name: cons-port
