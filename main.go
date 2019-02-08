@@ -15,7 +15,7 @@ const topic = "user.created"
 
 func main() {
 	srv := k8s.NewService(
-		micro.Name("go.micro.srv.email"),
+		micro.Name("email"),
 		micro.Version("latest"),
 	)
 
